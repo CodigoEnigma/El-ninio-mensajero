@@ -23,10 +23,10 @@
 	<?php include('inc/header.php');
         echo "<br>";
 
-		echo "<h1><strong>Bienvenido: ". $nombre . "</strong> </h1>";
+		echo "<h2><strong>Bienvenido: ". $nombre . "</strong> </h2>";
 		
 		//echo '<h2 style="text-align:right">Alertas:</h2>';
-		echo '<h2 style="text-align:center"><strong>CARTAS ASIGNADAS</strong></h2>'; 
+		
     	require('config/db.php');
 		$sql=("SELECT * FROM carta_recivida WHERE ID_USUARIO='$id'");
 		$query=mysqli_query($conn,$sql);
@@ -36,10 +36,12 @@
         $leer = $permisos_obtenidos['LEER'];
         $responder = $permisos_obtenidos['RESPONDER'];
         $postular = $permisos_obtenidos['POSTULAR'];
-        
+        $name = $permisos_obtenidos['NOMBRE_ESPECIALIDAD'];
+        echo '<h2 ><strong>Rol: '.$name.'</strong></h2>'; 
     
-    
+        echo '<h2 style="text-align:center"><strong>CARTAS ASIGNADAS</strong></h2>'; 
         ?>
+         
           
 		<table border="1"; class="table table-dark" style="margin-left: auto;margin-right: auto;max-width:70%">
 			<tr class='warning'>
@@ -65,7 +67,7 @@
                 
                 if($leer == 'si'){
                     echo "<div style='float:center'>
-                    <td align='center'><a href=".ROOT_URL."leer_carta.php?id=". $arreglo['ID_CARTA_RECIVIDA']. "><img class='imgCarta' src='images/leer.png' class='img-sluid' alt='Responsive image' style ='width:50px; height:50px;'></td>
+                    <td align='center'><a href=".ROOT_URL."lectura_carta.php?id=". $arreglo['ID_CARTA_RECIVIDA']. "><img class='imgCarta' src='images/leer.png' class='img-sluid' alt='Responsive image' style ='width:50px; height:50px;'></td>
                     </div>";
                     $leida = $arreglo['LEIDA'] ;
                     if($leida == "si"){
@@ -82,9 +84,9 @@
                 
                 if($responder == 'si'){
                     $resp = $arreglo['RESPUESTA'] ;
-                    if(isset($resp)){
+                    if(isset($resp) && trim($resp)){
                         echo "<div style='float:center'>
-                        <td align='center'><img class='imgCarta' src='images/respuesta.png' class='img-sluid' alt='Responsive image' style ='width:50px; height:50px;'></td>
+                        <td align='center'><img class='imgCarta' src='images/responder.png' class='img-sluid' alt='Responsive image' style ='width:50px; height:50px;'></td>
                         </div>";
                     }else {
                          echo "   <td align='center'><img class='imgCarta' src='images/no.png' class='img-sluid' alt='Responsive image' style ='width:50px; height:50px;'></td>" ;

@@ -1,6 +1,23 @@
-<?php 
-        require('config/config.php');
+
+       
+
+        <?php
+	require('config/config.php');
+    
     session_start();
+    if(!isset($_COOKIE)){
+		header('Location: '.ROOT_URL.'');
+	} else {
+		if($_COOKIE['roll'] != 'administrador'){
+			header('Location: '.ROOT_URL.'');
+		}
+	}
+	
+?>
+       
+       
+       <?php 
+        
 include('inc/header.php'); 
  extract($_GET);
 $query = "SELECT * FROM especialidad WHERE ID_ESPECIALIDAD='$id'" ;
@@ -21,7 +38,7 @@ mysqli_close($conn);
    
    
 <?php
-$carpeta_destino=$_SERVER['DOCUMENT_ROOT'].'/xampp/el-ninio-mensajero/palabras/';
+$carpeta_destino=$_SERVER['DOCUMENT_ROOT'].'/palabras/';
      if(isset($_POST['actualizar_especialidad'])){
          if(isset($_POST['actualizar_especialidad'])){
             
@@ -71,7 +88,7 @@ $carpeta_destino=$_SERVER['DOCUMENT_ROOT'].'/xampp/el-ninio-mensajero/palabras/'
                     if($nombre != $nombre_especialidad){
                         rename($carpeta_destino.$nombre_especialidad.".txt",$carpeta_destino.$nombre.".txt");
                     }
-                    $query = "UPDATE `especialidad` SET `ID_ESPECIALIDAD` = '$nombre_esp', `NOMBRE_ESPECIALIDAD` = '$nombre', `LEER` = '$leer', `RESPONDER` = '$responder', `DERIVAR` = '$derivar', `POSTULAR` = '$postular' WHERE `especialidad`.`ID_ESPECIALIDAD` = '$id'";
+                    $query = "UPDATE `especialidad` SET `ID_ESPECIALIDAD` = '$id', `NOMBRE_ESPECIALIDAD` = '$nombre', `LEER` = '$leer', `RESPONDER` = '$responder', `DERIVAR` = '$derivar', `POSTULAR` = '$postular' WHERE `especialidad`.`ID_ESPECIALIDAD` = '$id'";
                     if( mysqli_query($conn, $query)){
                         
                         echo'<script type="text/javascript">
@@ -169,17 +186,17 @@ $carpeta_destino=$_SERVER['DOCUMENT_ROOT'].'/xampp/el-ninio-mensajero/palabras/'
                         </div>
                         <?php endif;?>
                         <br>
+                        <label>Los campos marcados con <strong>*</strong> son campos obligatorios</label>
                         <div>
                           <a href="<?php echo ROOT_URL; ?>editar_palabras.php?id=<?php echo $id; ?>" class="btn btn-primary btn-block"  name="cancelar">Añadir o eliminar palabras clave </a> 
                           <br>
                         </div>
+                    <button type="submit" class="btn btn-primary btn-block" name="actualizar_especialidad">Actualizar</button>
+                    <br>
                     <div>
                           <a href="<?php echo ROOT_URL; ?>administrar_tipos.php" class="btn btn-primary btn-block"  name="cancelar">Cancelar </a> 
                           <br>
                      </div>
-                    <button type="submit" class="btn btn-primary btn-block" name="actualizar_especialidad">Actualizar</button>
-                    <br>
-                    <label>Los campos marcados con <strong>*</strong> son campos obligatorios</label>
                 </form>
-        </div> 
+        
     

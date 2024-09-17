@@ -126,14 +126,15 @@
                 
                 if($tamanio_texto != 0){
                     if($tipo_texto=="text/plain"){ 
-                         $carpeta_destino=$_SERVER['DOCUMENT_ROOT'].'/xampp/el-ninio-mensajero/palabras/';
-                         move_uploaded_file($_FILES['texto']['tmp_name'],$carpeta_destino.$nombre.".txt");
+                         $carpeta_destino=
+                         $carpeta_destino=$_SERVER['DOCUMENT_ROOT'].'/palabras/'; //DIRECTORIO
+                         move_uploaded_file($_FILES['texto']['tmp_name'],$carpeta_destino.$nombre.".txt");//MANEJO DE RUTAS
                          
                            
                          $query = "INSERT INTO especialidad (ID_ESPECIALIDAD, NOMBRE_ESPECIALIDAD, LEER, RESPONDER, DERIVAR, POSTULAR) VALUES('$nombre_esp','$nombre', '$leer', '$responder', '$derivar', '$postular')";
                          if( mysqli_query($conn, $query)){
                                  echo'<script type="text/javascript">
-                                                alert("Especialidad registradad '.$carpeta_destino.'");
+                                                alert("La especialidad fue registrada con exito");
                                                 window.location.href="'.ROOT_URL.'administrar_tipos.php";
                                                 </script>';
                          }else{echo 'ERROR: '. mysqli_error($conn);}

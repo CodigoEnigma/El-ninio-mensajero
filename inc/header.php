@@ -9,7 +9,7 @@
 		<head>
 			<title>El niño mensajero</title>
 			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no" >
+			<meta name="viewport" content="wid th=device-width, initial-scale=1 shrink-to-fit=no" >
 			<link rel="stylesheet" href="<?php echo (CSSPATH . "$cssItem"); ?>" type="text/css">
 			<link rel="stylesheet" href="css/cartaRespuesta.css" type="text/css" /> 
 			<link rel="stylesheet" href="css/pagePrincipal.css" type="text/css">
@@ -24,8 +24,6 @@
 			
       			body {
 					font-family: 'Chilanka', cursive;
-					
-					
 				}
 			</style>
 			<link href="signin.css" rel="stylesheet">

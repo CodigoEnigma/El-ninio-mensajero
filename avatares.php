@@ -12,9 +12,10 @@
     <div class="container">
         <div >
            <br>
-            <a href="<?php echo ROOT_URL; ?>carta.php?id=chico" role = "button" style="float:left; margin:10px;">
+            <a href="<?php echo ROOT_URL; ?>" role = "button" style="float:left; margin:10px;">
 			 <img src="images/boton_volver.gif" class="img-fluid" alt="Responsive image" id="btn-back"  style = 'width:150px; height:50px;'>
             </a> 
+            <h2><strong>Escoge un personaje</strong></h2>
             <table border='1'>
                 <tr  class='success'>
                     <td>
